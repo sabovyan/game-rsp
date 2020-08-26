@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styles from './App.module.css';
+import Players from './components/Players/Players';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+	return (
+		<div className={styles.game}>
+			<h1 className={styles.game__title}>
+				<span aria-label="rock" role="img">
+					🤘🏼
+				</span>
+				<span aria-label="scissors" role="img">
+					{' '}
+					✂
+				</span>
+				<span aria-label="paper" role="img">
+					{' '}
+					🧻
+				</span>
+			</h1>
+			<Players />
+		</div>
+	);
 }
-
-export default App;
