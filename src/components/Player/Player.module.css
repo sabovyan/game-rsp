@@ -2,25 +2,3 @@
 	padding: 1rem;
 	border-radius: 5px;
 }
-
-.player__shape {
-	padding: 1rem;
-	font-size: 5rem;
-	transition: all 1s;
-	animation: pop 1s forwards;
-}
-
-@keyframes pop {
-	from {
-		opacity: 0;
-	}
-	top {
-		opacity: 1;
-	}
-}
-
-.player__score {
-	align-self: flex-start;
-	font-size: 1.5rem;
-	color: red;
-}

@@ -24,6 +24,52 @@
 	box-shadow: 5px 5px 5px rgba(255, 255, 255, 0.644);
 }
 
+.player__shape {
+	padding: 1rem;
+	font-size: 5rem;
+	transition: all 1s;
+}
+.player__shape--display {
+	animation: pop 0.2s forwards;
+}
+
+@keyframes pop {
+	from {
+		transform: scale(0);
+	}
+	top {
+		transform: scale(1);
+	}
+}
+
+.player-1 .player__shape {
+	filter: drop-shadow(3px 3px 5px grey);
+}
+.player-2 .player__shape {
+	filter: drop-shadow(3px 3px 3px rgba(255, 255, 255, 0.3));
+}
+.player__score {
+	/* align-self: flex-start; */
+	font-size: 1.9rem;
+	color: red;
+	/* transform: translateX(10%); */
+}
+.player__score--display {
+	animation: pop-score 0.2s forwards;
+}
+
+@keyframes pop-score {
+	0% {
+		transform: scale(0) rotate(0);
+	}
+	50% {
+		transform: scale(0.3) rotate(0);
+	}
+	100% {
+		transform: scale(1) rotate(360deg);
+	}
+}
+
 .game__button {
 	width: 40%;
 	padding: 1rem;
@@ -34,12 +80,7 @@
 	outline: none;
 }
 
-.player-1 .player__shape {
-	filter: drop-shadow(3px 3px 5px grey);
-}
-.player-2 .player__shape {
-	filter: drop-shadow(3px 3px 3px rgba(255, 255, 255, 0.3));
-}
-.modal {
-	width: 70%;
+.game__button:hover {
+	background-color: black;
+	color: white;
 }
