@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Players.css';
-import { Player } from '../Player/Player';
+import Player from '../Player/Player';
+import Limit from '../Limit/Limit';
+import GameOver from '../GameOver/GameOver';
 import { GamePlayer } from './helper/class.helper';
 import { hasWinner } from './helper/function.helper';
 
@@ -26,7 +28,7 @@ function spinWinnerScore(scoreClass) {
 	scoreClass.classList.add('player__score--display');
 	setTimeout(() => {
 		scoreClass.classList.remove('player__score--display');
-	}, 500);
+	}, 600);
 }
 
 const player1 = new GamePlayer(1);
@@ -39,9 +41,19 @@ export default class Players extends Component {
 			shapes: ['()', '()'],
 			player1Score: 0,
 			player2Score: 0,
+			limit: 3,
+			winnerName: 'Player 1',
 		};
 		// this.handleClick = this.handleClick.bind(this);
+		// this.handleChange = this.handleChange.bind(this);
 	}
+
+	handleChange = (e) => {
+		this.setState({
+			limit: e.target.value,
+		});
+	};
+
 	handleClick = () => {
 		const shapes = [randomShape(), randomShape()];
 		hasWinner(shapes, player1, player2);
@@ -50,6 +62,11 @@ export default class Players extends Component {
 			this.setState((prevState) => ({
 				player1Score: prevState.player1Score + 1,
 			}));
+
+			if (this.state.player1Score === this.state.limit - 1) {
+				player1.titleName = 'winner';
+			}
+
 			winnerScore = document.querySelector('.player-1 > .player__score');
 			spinWinnerScore(winnerScore);
 		}
@@ -60,6 +77,7 @@ export default class Players extends Component {
 			winnerScore = document.querySelector('.player-2 > .player__score');
 			spinWinnerScore(winnerScore);
 		}
+
 		const shapeClasses = document.querySelectorAll('.player__shape');
 		toggleClass(shapeClasses, 'player__shape--display');
 
@@ -68,7 +86,6 @@ export default class Players extends Component {
 
 	render() {
 		const { shapes, player1Score, player2Score } = this.state;
-
 		player1.shape = shapes[0];
 		player2.shape = shapes[1];
 
@@ -76,11 +93,17 @@ export default class Players extends Component {
 		player2.score = player2Score;
 		return (
 			<>
+				<Limit onchange={this.handleChange} />
 				<Player {...player1} />
 				<Player {...player2} />
 				<button className={'game__button'} onClick={this.handleClick}>
 					click
 				</button>
+				<GameOver
+					playerScore1={this.state.player1Score}
+					playerScore2={this.state.player2Score}
+					winnerName={this.state.winnerName}
+				/>
 			</>
 		);
 	}
