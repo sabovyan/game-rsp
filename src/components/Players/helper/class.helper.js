@@ -2,6 +2,7 @@ export class GamePlayer {
 	constructor(id) {
 		this.id = id;
 		this.className = `player player-${this.id}`;
+		this.titleName = `player player ${this.id}`;
 		this.shape = '()';
 		this.shapeClass = 'player__shape';
 		this.score = 0;
