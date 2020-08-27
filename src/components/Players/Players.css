@@ -78,9 +78,15 @@
 	background-color: transparent;
 	border: 1px solid;
 	outline: none;
+	cursor: pointer;
 }
 
 .game__button:hover {
 	background-color: black;
 	color: white;
+}
+.game__button:disabled {
+	background: white;
+	color: grey;
+	cursor: default;
 }
