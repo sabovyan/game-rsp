@@ -1,0 +1,15 @@
+.select__container {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.select {
+	width: 100px;
+	margin: 10px 20px;
+	font-size: 2rem;
+	border: none;
+	outline: none;
+
+	color: red;
+}
