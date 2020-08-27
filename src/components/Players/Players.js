@@ -43,6 +43,8 @@ export default class Players extends Component {
 			player2Score: 0,
 			limit: 3,
 			winnerName: 'Player 1',
+			isOver: false,
+			NoIsClicked: false,
 		};
 		// this.handleClick = this.handleClick.bind(this);
 		// this.handleChange = this.handleChange.bind(this);
@@ -64,7 +66,10 @@ export default class Players extends Component {
 			}));
 
 			if (this.state.player1Score === this.state.limit - 1) {
-				player1.titleName = 'winner';
+				this.setState({
+					winnerName: 'Player 1',
+					isOver: true,
+				});
 			}
 
 			winnerScore = document.querySelector('.player-1 > .player__score');
@@ -74,6 +79,13 @@ export default class Players extends Component {
 			this.setState((prevState) => ({
 				player2Score: prevState.player2Score + 1,
 			}));
+
+			if (this.state.player2Score === this.state.limit - 1) {
+				this.setState({
+					winnerName: 'Player 2',
+					isOver: true,
+				});
+			}
 			winnerScore = document.querySelector('.player-2 > .player__score');
 			spinWinnerScore(winnerScore);
 		}
@@ -82,6 +94,15 @@ export default class Players extends Component {
 		toggleClass(shapeClasses, 'player__shape--display');
 
 		this.setState({ shapes });
+	};
+
+	handleModalSubmit = () => {
+		window.location.reload();
+	};
+	handleModalReject = () => {
+		this.setState({
+			NoIsClicked: true,
+		});
 	};
 
 	render() {
@@ -96,13 +117,21 @@ export default class Players extends Component {
 				<Limit onchange={this.handleChange} />
 				<Player {...player1} />
 				<Player {...player2} />
-				<button className={'game__button'} onClick={this.handleClick}>
+				<button
+					disabled={this.state.isOver}
+					className={'game__button'}
+					onClick={this.handleClick}
+				>
 					click
 				</button>
 				<GameOver
 					playerScore1={this.state.player1Score}
 					playerScore2={this.state.player2Score}
 					winnerName={this.state.winnerName}
+					isOver={this.state.isOver}
+					onYes={this.handleModalSubmit}
+					onNo={this.handleModalReject}
+					NoIsClicked={this.state.NoIsClicked}
 				/>
 			</>
 		);

@@ -3,7 +3,7 @@ import './GameOver.css';
 
 export default function GameOver(props) {
 	return (
-		<div className="gameOver__modal">
+		<div className={props.isOver ? 'gameOver__modal' : 'modal'}>
 			<h2 className="gameOver__title">
 				<span className="game__winner">{props.winnerName}</span> is the winner!
 			</h2>
@@ -13,11 +13,11 @@ export default function GameOver(props) {
 			</p>
 			<div className="game__request-container"></div>
 			<p className="game__request">Do you want to play again ?</p>
-			<button className="request__button game__accept" onclick={props.onclick}>
+			<button className="request__button game__accept" onClick={props.onYes}>
 				Yes
 			</button>
-			<button className="request__button game__reject" onclick={props.onclick}>
-				No
+			<button className="request__button game__reject" onClick={props.onNo}>
+				{props.NoIsClicked ? '😢😥😥' : 'No'}
 			</button>
 		</div>
 	);
