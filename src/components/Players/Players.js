@@ -114,7 +114,7 @@ export default class Players extends Component {
 		player2.score = player2Score;
 		return (
 			<>
-				<Limit onchange={this.handleChange} />
+				<Limit limit={this.state.limit} onchange={this.handleChange} />
 				<Player {...player1} />
 				<Player {...player2} />
 				<button
