@@ -55,10 +55,10 @@
 	/* transform: translateX(10%); */
 }
 .player__score--display {
-	animation: pop-score 0.2s forwards;
+	animation: spin 0.3s forwards;
 }
 
-@keyframes pop-score {
+@keyframes spin {
 	0% {
 		transform: scale(0) rotate(0);
 	}
